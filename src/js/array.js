@@ -16,12 +16,11 @@ function addTeam(){
 }
 
 //export {teamList};
-
-var n=a.length,b=1;
-var list = "";
  
 //rounds
 function match(){
+    var n=a.length,b=1;
+    var list = "";
     //for fixturei
     do{
         if(b==n){
@@ -45,7 +44,7 @@ function match(){
     }while(b<=n);
 }
 function re_order(){
-    var b=1;
+    var b=1,n=a.length;
     for(let i=0;i<n-1;i++)
     {   
         if(b==n-1){
