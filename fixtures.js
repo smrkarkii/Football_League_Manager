@@ -3,9 +3,9 @@
 //document.writeln("<script type='text/javascript' src='./src/array.js'></script>");
 //<script type= "text/javascript" src="./src/array.js"></script>
 
-
+//a ko thau ma teamList auna paryo
 //for array length
-//a=teamList;
+
 var n=a.length,b=1;
 var list = "";
  
