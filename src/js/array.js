@@ -1,7 +1,29 @@
 
 //window.localStorage.setItem('player',JSON.stringify(a) || []);
+var teams={name:'',
+           played:'',
+           points:'',
+           won:'',
+           lost:'',
+           draw:'' 
+            }
+            
+   
+    function displayTeams() {
+                let teams = JSON.parse(localStorage.getItem("teams") || "[]");
+            var dispList="";
+            for(var i=0; i<teams.length; i++)
+            {
+                dispList += teams[i].name + '<button class= " btn btn-danger" onclick="" id="btn2"><i class="fa fa-trash"></i></button></br>';
+               
+            }
+            document.getElementById('listTeam').innerHTML = dispList;
+            console.log(teams);
+        }
+        
+   
 function addTeam(){
-    let a=JSON.parse(localStorage.getItem("a")|| "[]")
+    let a=JSON.parse(localStorage.getItem("teams")|| "[]");
     var data=document.getElementById('team-name').value;
     //append data to the array
     a.push({
@@ -12,30 +34,56 @@ function addTeam(){
         lost:0,
         draw:0
     });
-    localStorage.setItem("a",JSON.stringify(a));
+    localStorage.setItem("teams",JSON.stringify(a));
     //display
     displayTeams();
+  
 }
 
-    function displayTeams() {
-        let teams = JSON.parse(localStorage.getItem("a") || "[]")
-    var dispList="";
-    for(var i=0; i<teams.length; i++)
+
+   
+function showData()
+{
+  document.getElementById("points-table").innerHTML="";
+  let user_records=JSON.parse(localStorage.getItem("teams")|| "[]")
+console.log(user_records);
+  if(user_records)
+  {
+    for(let i=0;i<user_records.length;i++)
     {
-        dispList += teams[i].name + '<button class= " btn btn-danger" onclick="" id="btn2"><i class="fa fa-trash"></i></button></br>';
-       
-    }
-    document.getElementById('listTeam').innerHTML = dispList;
-    console.log(teams);
-}
+      let addDiv=document.createElement('div');
+  addDiv.className="row";
+  addDiv.innerHTML='  <div class="col-sm-4" style="padding: 10px;">'+user_records[i].name+'</div><div class="col-sm-4" style="padding: 10px;">'+user_records[i].points+'</div><div class="col-sm-4" style="padding: 10px;">'+user_records[i].won+'</div>';
+  document.getElementById("points-table").appendChild(addDiv);
 
-//export {teamList};
+    }
+  }
+  }
+
+
+
+//to take points
+function set_score(){ 
+
+
+    // var n=teams.length-1;
+    // for(let i =0; i<teams.length;i++){
+    //     teams[i].points += document.getElementById("team-point1").value ;
+    //     console.log(teams[i]);
+    //     teams[n].points += document.getElementById("team-point2").value;
+    //     console.log(teams[n]);
+    // }
+
+}
+function submitPoints(){
+
+}
  
 //rounds
 
 
 function match(){
-    let a = JSON.parse(localStorage.getItem("a") || "[]")
+    let a = JSON.parse(localStorage.getItem("teams") || "[]");
     var n=a.length,b=1;
     var list = "";
     var input_html = "<input type=\"number\" id=\"team-point\" placeholder=\"Enter team point\"></input>";
@@ -62,7 +110,7 @@ function match(){
     }while(b<=n);
 }
 function re_order(){
-    let a = JSON.parse(localStorage.getItem("a") || "[]")
+    let a = JSON.parse(localStorage.getItem("teams") || "[]")
     var b=1,n=a.length;
     for(let i=0;i<n-1;i++)
     {   
@@ -90,3 +138,6 @@ function deleteTeam(){
     }
     document.getElementById('listTeam').innerHTML = dispList;
 }
+
+    let testArray=JSON.parse(localStorage.getItem("teams")|| "[]")
+    console.log(testArray);
