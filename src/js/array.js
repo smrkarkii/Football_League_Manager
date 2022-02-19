@@ -1,26 +1,44 @@
-var a= [];
 
+//window.localStorage.setItem('player',JSON.stringify(a) || []);
 function addTeam(){
+    let a=JSON.parse(localStorage.getItem("a")|| "[]")
     var data=document.getElementById('team-name').value;
     //append data to the array
-    a.push(data);
+    a.push({
+        name:data,
+        played:0,
+        points:0,
+        won:0,
+        lost:0,
+        draw:0
+    });
+    localStorage.setItem("a",JSON.stringify(a));
     //display
+    displayTeams();
+}
+
+    function displayTeams() {
+        let teams = JSON.parse(localStorage.getItem("a") || "[]")
     var dispList="";
-    for(i=0; i<a.length; i++)
+    for(var i=0; i<teams.length; i++)
     {
-        dispList += a[i] + '<button class= " btn btn-danger" onclick="" id="btn2"><i class="fa fa-trash"></i></button></br>';
+        dispList += teams[i].name + '<button class= " btn btn-danger" onclick="" id="btn2"><i class="fa fa-trash"></i></button></br>';
        
     }
     document.getElementById('listTeam').innerHTML = dispList;
-    console.log(a);
+    console.log(teams);
 }
 
 //export {teamList};
  
 //rounds
+
+
 function match(){
+    let a = JSON.parse(localStorage.getItem("a") || "[]")
     var n=a.length,b=1;
     var list = "";
+    var input_html = "<input type=\"number\" id=\"team-point\" placeholder=\"Enter team point\"></input>";
     //for fixturei
     do{
         if(b==n){
@@ -33,17 +51,18 @@ function match(){
             n = n-1;
             if(i!=n)
             {
-                list += a[i] + "-" + a[n] + "<br>";
+                list += a[i].name + input_html + "-" + input_html + a[n].name + "<br>";
                 document.getElementById("matched_teams").innerHTML = list;
             }
         }
         //console.log(list);
         b++;
         n = a.length;
-        re_order();
+        re_order(a);
     }while(b<=n);
 }
 function re_order(){
+    let a = JSON.parse(localStorage.getItem("a") || "[]")
     var b=1,n=a.length;
     for(let i=0;i<n-1;i++)
     {   
@@ -66,7 +85,7 @@ function deleteTeam(){
     var dispList="";
     for(i=0; i<a.length; i++)
     {
-        dispList += a[i] + '<button class= " btn btn-danger" onclick="deleteTeam()" id="btn2"><i class="fa fa-trash"></i></button></br>';
+        dispList += a[i].name + '<button class= " btn btn-danger" onclick="deleteTeam()" id="btn2"><i class="fa fa-trash"></i></button></br>';
     
     }
     document.getElementById('listTeam').innerHTML = dispList;
