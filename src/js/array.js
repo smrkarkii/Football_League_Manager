@@ -139,5 +139,5 @@ function deleteTeam(){
     document.getElementById('listTeam').innerHTML = dispList;
 }
 
-    let testArray=JSON.parse(localStorage.getItem("teams")|| "[]")
-    console.log(testArray);
+
+

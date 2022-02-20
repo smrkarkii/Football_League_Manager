@@ -17,14 +17,15 @@
           </div>
 
      
-      <table class="table ">
-           <tr>
+      <table class="table table-striped">
+           <tr class = "bg-info">
+            <th>S.N</th>
             <th>Teams</th>
-            <th>Points</th>
-            <th>Played</th>
-            <th>WON</th>
-            <th>Draw</th>
-            <th>Lost</th>
+            <th data-column="points" data-order="desc">Points &#9650</th>
+            <th data-column="played" data-order="desc">Played &#9650</th>
+            <th data-column="played" data-order="desc">Draw &#9650</th>
+            <th data-column="draw" data-order="desc">Won &#9650</th>
+            <th data-column="lost" data-order="desc">Lost &#9650</th>
            </tr>
     <tbody id="points-table">
       
@@ -38,19 +39,43 @@
         
     <script defer>
         
-            var table = document.getElementById('points-table');
+           // var table = document.getElementById('points-table');
             array=JSON.parse(localStorage.getItem("teams"));
-        //     var array=[{name:'smriti', points:'2',won:'2',lost:'3', draw:'2'},
-        //     {name:'smriti', points:'2',won:'2',lost:'3', draw:'2'},
-        //    {name:'smriti', points:'2',won:'2',lost:'3', draw:'2'}
+        //     var array=[{name:'smriti', points:'10',won:'3',lost:'9', draw:'1'},
+        //     {name:'sujata', points:'4',won:'5',lost:'4', draw:'3'},
+        //    {name:'samir', points:'6',won:'7',lost:'8', draw:'2'}
         // ]
+        $('th').on('click', function(){
+		var column = $(this).data('column')
+		var order = $(this).data('order')
+		var text = $(this).html()
+		text = text.substring(0, text.length - 1)
+
+		if(order == 'desc'){
+			$(this).data('order', "asc")
+			array = array.sort((a,b) => a[column] > b[column] ? 1 : -1)
+			text += '&#9660'
+
+		}else{
+			$(this).data('order', "desc")
+			array = array.sort((a,b) => a[column] < b[column] ? 1 : -1)
+			text += '&#9650'
+
+		}
+		$(this).html(text)
+		displayTable(array)
+	})
+
         displayTable(array);
         function displayTable(a){
+            var table = document.getElementById('points-table')
+            table.innerHTML= '';
             for(var i = 0; i<a.length;i++){
                var tr= `<tr>
                     <td>${i+1}</td>
                     <td>${a[i].name}</td>
                     <td>${a[i].points}</td>
+                    <td>${a[i].played}</td>
                     <td>${a[i].won}</td>
                     <td>${a[i].lost}</td>
                     <td>${a[i].draw}</td>
@@ -65,3 +90,10 @@
     <script src="./js/wow.min.js"></script>  
     </body>
 </html>
+
+
+
+<button id="myid">Set Score</button>
+$('myid').click(function(){
+    set_score();
+})
