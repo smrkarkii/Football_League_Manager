@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <link rel="stylesheet" href="style.css">
+     <title>.::FOOTBALL TOURNAMENT</title>
+</head>
+
+<body>
+
+     <!-------------------- container -------------------->
+     <div class="container c1">
+          <!-------------------- Header -------------------->
+          <h1>FOOTBALL TOURNAMENT ! <i class="fas fa-table-tennis"></i></h1>
+
+          <!-------------------- Select game limit -------------------->
+          <select name="limit" class="select-opt" id="Round">
+               <option value="5">Round of 2</option>
+               <option value="7">Round of 3</option>
+               <option value="11">Round of 4</option>
+               <option value="21">Round of 5</option>
+          </select>
+
+          <!-------------------- Add Team -------------------->
+          <div class="add-player-container">
+            <input type="text" id="team-name" placeholder="Enter team name">
+            <button type="button" onclick="addTeam()" > Add Team <i class="fa fa-plus"></i></button>
+          </div>
+
+          <!-------------------- Team table -------------------->
+          <table>
+               <tr>
+                    <th width="30">#</th>
+                    <th>Name</th>
+               </tr>
+               <tbody id="listTeam">
+                    <!---------- player row goes in here ---------->
+               </tbody>
+          </table>
+
+         <!-------------------- Fixtures --------------->
+          <button class="action-btn" onclick="window.location.href = 'fixtures.html';">
+               Generate Fixtures
+               <i class="fas fa-arrow-right"></i>
+          </button>
+
+          <!-------------------- Delete all players -------------------->
+          <button class="action-btn ab2" onclick="deleteTeam()">
+               Delete all
+               <i class="fas fa-trash-alt"></i>
+          </button>
+     </div>
+
+     <!-------------------- include main.js -------------------->
+     <script src="array.js"></script>
+</body>
+
+</html>
