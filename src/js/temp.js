@@ -84,10 +84,10 @@ $(document).ready(function () {
             re_order(teams);
         } while (b <= n);
     });
-
     $("#myid").on("click", function () {
         teams=JSON.parse(localStorage.getItem("teams" || "[]"));
         var n = teams.length, b = 1, j = 0;
+        var temp = [];
         do {
             if (b == n) {
                 if (n % 2 == 0) {
@@ -98,12 +98,12 @@ $(document).ready(function () {
                 n = n - 1;
                 if (i != n) {
 
-                    for (let i = 0; i < teams.length /2; i++) {
                         var si = Number($("#team-point" + j.toString()).val());
 
+                        temp[i] = parseInt(si);
                         teams[i].goals += parseInt(si);
                         teams[i].played ++;
-                        console.log(si);
+                        console.log(teams[i].goals);
                         //teams[i].played += Number(1);
 
 
@@ -112,20 +112,35 @@ $(document).ready(function () {
                         var sn = Number($("#team-point" + (j+1).toString()).val());
                         // teams[n].points += 0;
                         // teams[n].played += 0;
-
+                        temp[n] = parseInt(sn);
                         teams[n].goals += parseInt(sn);
                         teams[n].played ++;
-                        console.log(sn);
-                        console.log(si);
+                        console.log(teams[n].goals);
+
+                        if(temp[i] == temp[n]){
+                            teams[i].points ++;
+                            teams[n].points ++;
+                            teams[i].draw ++;
+                            teams[n].draw ++;
+                        }
+                        if(temp[i]>temp[n]){
+                            teams[i].points += 3;
+                            teams[i].won ++;
+                            teams[n].lost ++;
+                        }
+                        if(temp[n]>temp[i]){
+                            teams[n].points +=3;
+                            teams[n].won ++;
+                            teams[i].lost ++;
+                        }
                         
                         //teams[n].played += Number(1);
 
 
 
-                      
+                        localStorage.setItem("teams", JSON.stringify(teams));
                         console.log(teams);
                         j += 2;
-                    }
 
                 }
             }
@@ -134,8 +149,7 @@ $(document).ready(function () {
             re_order(teams);
         } while (b <= n);
     });
-    localStorage.setItem("teams", JSON.stringify(teams));
-
+    
 });
 
 
@@ -148,8 +162,7 @@ $(document).ready(function () {
 
 
 
-
-
+ localStorage.setItem("teams", JSON.stringify(teams));
 
 function set_score() {
 

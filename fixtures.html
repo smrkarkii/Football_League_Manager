@@ -1,12 +1,61 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Generate Fixtures</title>
-        <script type = "text/javascript" src="./src/js/array.js" > </script>
-        <!--<link rel="stylesheet" href="style.css">-->
-    </head>
-    <body>
-        <button type="button" onclick="set_score()" >Set Score</button>
-    </body>
-</html>
-<a href="./src/js/temp.js"> <h3>Add teams name</h3></a>
+$("#myid").on("click", function () {
+    teams=JSON.parse(localStorage.getItem("teams" || "[]"));
+    var n = teams.length, b = 1, j = 0;
+    do {
+        if (b == n) {
+            if (n % 2 == 0) {
+                break;
+            }
+        }
+        for (let i = 0; i < teams.length / 2; i++) {
+            n = n - 1;
+            if (i != n) {
+
+                for (let i = 0; i < teams.length /2; i++) {
+                    var si = Number($("#team-point" + j.toString()).val());
+
+                    teams[i].goals += parseInt(si);
+                    teams[i].played ++;
+                    console.log(si);
+                    //teams[i].played += Number(1);
+
+
+
+                    
+                    var sn = Number($("#team-point" + (j+1).toString()).val());
+                    // teams[n].points += 0;
+                    // teams[n].played += 0;
+
+                    teams[n].goals += parseInt(sn);
+                    teams[n].played ++;
+                    console.log(sn);
+                    console.log(si);
+                    
+                    //teams[n].played += Number(1);
+
+
+
+                  
+                    console.log(teams);
+                    j += 2;
+                }
+
+            }
+        }
+        b++;
+        n = teams.length;
+        re_order(teams);
+    } while (b <= n);
+});
+
+});
+
+
+
+
+
+
+
+
+
+
