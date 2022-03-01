@@ -1,9 +1,9 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="./style.css">
-    <title>.::FOOTBALL TOURNAMENT</title>
+    <title>Add teams</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
@@ -20,12 +20,55 @@
 </head>
 
 <body>
-    <div class="container c1">
-        <!-------------------- Header -------------------->
-        <h1>POINTS TABLE ! </h1>
-
     <div class="heading">
     </div>
+
+    <!-- Sort By:
+    <select id="sortId">
+        <option value=""></option>
+        <option value="1" selected>Points</option>
+        <option value="2">Won</option>
+        <option value="3">Goals</option>
+    </select> -->
+    <!-- <script type="text/javascript"> 
+    //     $(function () {
+
+    //         let array = JSON.parse(localStorage.getItem("teams"));
+    //         $("#sortId").change(function () {
+    //             var selectedText = $(this).find("option:selected").text();
+    //             var value = $(this).val();
+    //             if (value == 1) {
+    //         let inputArr = JSON.parse(localStorage.getItem("teams"));
+
+    //                 console.log(value);
+    //                     let len = inputArr.length;
+    //                     for (let i = 0; i < len; i++) {
+    //                         for (let j = 0; j < len - i - 1; j++) {
+    //                             if (inputArr[j].points > inputArr[j + 1].points) {
+    //                                 let tmp = inputArr[j];
+    //                                 inputArr[j] = inputArr[j + 1];
+    //                                 inputArr[j + 1] = tmp;
+
+    //                             }
+    //                         }
+                        
+    //                     inputArr.reverse();
+    //                     return inputArr;
+    //                     console.log(inputArr);
+    //                 };
+
+    //             }
+    //             else if (value == 2) {
+    //                 bubbleSortByWon(inputArr);
+    //                 displayTable(inputArr);
+    //             }
+    //             else if (value == 3) {
+    //                 bubbleSortByGoals(inputArr);
+    //                 displayTable(inputArr);
+    //             }
+    //         });
+    //     });
+    </script> -->
     <table class="table table-striped sortable">
         <!-- <tr class = "bg-info">
             <th>S.N</th>
@@ -37,6 +80,8 @@
             <th data-column="lost" data-order="desc">Lost &#9650</th>
             <th data-column="lost" data-order="desc">Goals &#9650</th>
            </tr> -->
+
+
         <tr class="bg-info">
             <th>S.N</th>
             <th>Teams</th>
@@ -54,59 +99,35 @@
         </tbody>
 
     </table>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <script src="lib/jquery/jquery-1.11.3.min.js"></script>
     <script src="lib/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
-    <script src="./src/sorttable.js" type="text/javascript"></script>
+
     <script defer>
 
         //        // var table = document.getElementById('points-table');
         let array = JSON.parse(localStorage.getItem("teams"));
-        bubbleSortByPoints(array);
+        bubbleSort(array);
+        function bubbleSort(inputArr){
+        let len = inputArr.length;
+                        for (let i = 0; i < len; i++) {
+                            for (let j = 0; j < len - i - 1; j++) {
+                                if (inputArr[j].points > inputArr[j + 1].points) {
+                                    let tmp = inputArr[j];
+                                    inputArr[j] = inputArr[j + 1];
+                                    inputArr[j + 1] = tmp;
 
-        function bubbleSortByPoints(inputArr) {
-           
-            let len = inputArr.length;
-            for (let i = 0; i < len; i++) {
-                for (let j =0; j < len-i-1; j++) {
-                    if (inputArr[j].points > inputArr[j+1].points) {
-                        let tmp = inputArr[j];
-                        inputArr[j] = inputArr[j+1];
-                        inputArr[j+1] = tmp;
+                                }
+                            }
                         
-                    }
+                        inputArr.reverse();
+                        return inputArr;
+                        console.log(inputArr);
+                    };
                 }
-            }
-           inputArr.reverse();
-            return inputArr;
-        };
-        console.log(array);
-
-        bubbleSortByGoals(array);
-        function bubbleSortByGoals(inputArr) {
-           
-            let len = inputArr.length;
-            for (let i = 0; i < len; i++) {
-                for (let j = 0; j < len-i-1; j++) {
-                    if (inputArr[j].goals > inputArr[j+1].goals) {
-                        let tmp = inputArr[j];
-                        inputArr[j] = inputArr[j+1];
-                        inputArr[j+1] = tmp;
-                    }
-                }
-            }
-            inputArr.reverse();
-            return inputArr;
-        };
-        console.log(array);
-        bubbleSortByWon(array);
-        console.log(array);
-        //    console.log('after sorting')
-        //    console.log(arrGoals);
 
         displayTable(array);
         function displayTable(a) {
+           
             var table = document.getElementById('points-table');
             table.innerHTML = '';
             for (var i = 0; i < a.length; i++) {
