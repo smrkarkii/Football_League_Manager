@@ -36,34 +36,13 @@ function displayTeams() {
     document.getElementById('listTeam').innerHTML = dispList;
 }
 
-
-//export {teamList};
-
-//rounds
-
-
-    // function createFixtures(){
-    //     JSON.parse(localStorage.getItem("teams") || "[]")
-    //     document.getElementById('#Gen_Match').onclick(){
-
-    //     }
-
-
-
-
-    // }
 $(document).ready(function () {
   
     $("#Gen_Match").on("click", function () {
         
     JSON.parse(localStorage.getItem("teams") || "[]")
         var n = teams.length, b = 1, j = 0;
-        //var list = "", input = [];
-
-
-        //var input_html1 = "<input type=\"number\" id=\"team-point1\" ></input>";
-        //var input_html2 = "<input type=\"number\" id=\"team-point2\" ></input>";
-
+    
         //for fixturei
         do {
             if (b == n) {
@@ -74,11 +53,7 @@ $(document).ready(function () {
             for (let i = 0; i < teams.length / 2; i++) {
                 n = n - 1;
                 if (i != n) {
-                    // let forId = j;
-                    // j= forId.toString();
-                    // forId++;
-                    // var jj= forId.toString();
-                 
+                
                    
                     var fixture = `
                                 <h3>${'Day'+i}</h3>
@@ -166,62 +141,7 @@ $(document).ready(function () {
 });
 
 
-
-
-
-
-
-
-
-
-
  localStorage.setItem("teams", JSON.stringify(teams));
-
-function set_score() {
-
-    // your js code goes here
-    JSON.parse(localStorage.getItem("teams") || "[]");
-    var n = teams.length, b = 1, j = 0, input = [];
-    //for fixturei
-    do {
-        if (b == n) {
-            if (n % 2 == 0) {
-                break;
-            }
-        }
-        for (let i = 0; i < teams.length / 2; i++) {
-            n = n - 1;
-            for (let j = 0; j < n; j++) {
-                input[j] = "team-point" + j.toString();
-                //console.log(input[j]);
-            }
-            if (i != n) {
-                j = 0;
-                console.log(input[j]);
-                teams[i].points += document.getElementById(input[j]).value;
-                console.log(teams[i].points);
-                teams[n].points += document.getElementById(input[j + 1]).value;
-                console.log(teams[n].points);
-                j + 2;
-
-                localStorage.setItem("teams", JSON.stringify(teams));
-            }
-        }
-        b++;
-        n = teams.length;
-        re_order(teams);
-    } while (b <= n);
-}
-
-// var n=teams.length-1;
-// for(let i =0; i<teams.length;i++){
-//     teams[i].points += document.getElementById("team-point1").value ;
-//     console.log(teams[i]);
-//     teams[n].points += document.getElementById("team-point2").value;
-//     console.log(teams[n]);
-// }
-
-
 
 
 
@@ -242,14 +162,4 @@ function re_order(teams) {
         teams[i + 1] = temp;
         b++;
     }
-}
-//console.log(a);
-function deleteTeam() {
-    teams.pop();
-    var dispList = "";
-    for (i = 0; i < teams.length; i++) {
-        dispList += teams[i] + '<button class= " btn btn-danger" onclick="deleteTeam()" id="btn2"><i class="fa fa-trash"></i></button></br>';
-
-    }
-    document.getElementById('listTeam').innerHTML = dispList;
 }

@@ -27,17 +27,9 @@
     <div class="heading">
     </div>
     <table class="table table-striped sortable">
-        <!-- <tr class = "bg-info">
-            <th>S.N</th>
-            <th>Teams</th>
-            <th data-column="points" data-order="desc">Points &#9650</th>
-            <th data-column="played" data-order="desc">Played &#9650</th>
-            <th data-column="played" data-order="desc">Draw &#9650</th>
-            <th data-column="draw" data-order="desc">Won &#9650</th>
-            <th data-column="lost" data-order="desc">Lost &#9650</th>
-            <th data-column="lost" data-order="desc">Goals &#9650</th>
-           </tr> -->
-        <tr class="bg-info">
+       
+        <thead>
+        <tr class="bg-succes">
             <th>S.N</th>
             <th>Teams</th>
             <th>Points</th>
@@ -49,6 +41,7 @@
 
 
         </tr>
+    </thead>
         <tbody id="points-table">
 
         </tbody>
@@ -63,48 +56,9 @@
 
         //        // var table = document.getElementById('points-table');
         let array = JSON.parse(localStorage.getItem("teams"));
-        bubbleSortByPoints(array);
-
-        function bubbleSortByPoints(inputArr) {
-           
-            let len = inputArr.length;
-            for (let i = 0; i < len; i++) {
-                for (let j =0; j < len-i-1; j++) {
-                    if (inputArr[j].points > inputArr[j+1].points) {
-                        let tmp = inputArr[j];
-                        inputArr[j] = inputArr[j+1];
-                        inputArr[j+1] = tmp;
-                        
-                    }
-                }
-            }
-           inputArr.reverse();
-            return inputArr;
-        };
+         bubbleSort(array);
+       
         console.log(array);
-
-        bubbleSortByGoals(array);
-        function bubbleSortByGoals(inputArr) {
-           
-            let len = inputArr.length;
-            for (let i = 0; i < len; i++) {
-                for (let j = 0; j < len-i-1; j++) {
-                    if (inputArr[j].goals > inputArr[j+1].goals) {
-                        let tmp = inputArr[j];
-                        inputArr[j] = inputArr[j+1];
-                        inputArr[j+1] = tmp;
-                    }
-                }
-            }
-            inputArr.reverse();
-            return inputArr;
-        };
-        console.log(array);
-        bubbleSortByWon(array);
-        console.log(array);
-        //    console.log('after sorting')
-        //    console.log(arrGoals);
-
         displayTable(array);
         function displayTable(a) {
             var table = document.getElementById('points-table');
