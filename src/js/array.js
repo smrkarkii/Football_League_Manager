@@ -56,7 +56,7 @@ $(document).ready(function () {
                 
                    
                     var fixture = `
-                                <h3>${'Day'+i}</h3>
+                               
                                 <label for = ${'team-point'+j.toString()}>${teams[i].name}</label>
                                   <input type="number" id=${'team-point' +j.toString()} >
                                 <span>V/S</span>
