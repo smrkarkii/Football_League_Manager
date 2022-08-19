@@ -44,6 +44,7 @@ $(document).ready(function () {
         var n = teams.length, b = 1, j = 0;
     
         //for fixturei
+        //b=no of round
         do {
             if (b == n) {
                 if (n % 2 == 0) {
